@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- The XML file is the only way you can specify the directories you want to share; you can't programmatically add a directory. -->
+    <files-path
+        name="files"
+        path="." />
+</paths>
