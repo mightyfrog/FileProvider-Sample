@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,20 +61,10 @@ public class MainActivity extends AppCompatActivity {
      * @param fileName The file name.
      */
     private void createTempFile(String fileName) {
-        OutputStream out = null;
-        try {
-            out = openFileOutput(fileName, Context.MODE_PRIVATE);
+        try (OutputStream out = openFileOutput(fileName, Context.MODE_PRIVATE)) {
             out.write(("time: " + System.currentTimeMillis()).getBytes());
         } catch (IOException e) {
             android.util.Log.e(TAG, e.getMessage());
-        } finally {
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    // ignore
-                }
-            }
         }
     }
 }
